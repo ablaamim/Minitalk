@@ -6,7 +6,7 @@
 /*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:39:34 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/02/19 13:39:38 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/02/20 00:02:24 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	ft_zero(int pid)
 
 static void	ft_check(void)
 {
-	ft_putstr("\ncheck pid!\n");
+	ft_putstr("\nCheck pid!\n");
 	exit(0);
 }
 
@@ -77,13 +77,13 @@ int	main(int argc, char **argv)
 
 	if (argc != 3 || !ft_strlen(argv[2]))
 	{
-		ft_putstr("carefully! -> ./client [pid] [string]\n");
+		ft_putstr("Arguments : ./client [pid] [string]\n");
 		exit(0);
 	}
-	ft_putstr("client sent    : ");
+	ft_putstr("Client sent    : ");
 	ft_putnbr(ft_strlen(argv[2]));
 	ft_putstr(" byte\n");
-	ft_putstr("server received: ");
+	ft_putstr("Server received : ");
 	sa.sa_sigaction = count_byte;
 	sa.sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, &sa, 0);

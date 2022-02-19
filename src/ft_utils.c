@@ -6,7 +6,7 @@
 /*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:39:23 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/02/19 13:39:26 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/02/19 22:19:00 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,40 +25,30 @@ void	ft_putchar(char c)
 
 void	ft_putnbr(int n)
 {
-	if (n < 10)
-	{
-		ft_putchar(n + '0');
-		return ;
-	}
-	ft_putnbr(n / 10);
-	ft_putchar((n % 10) + '0');
+	if (n > 9)
+		ft_putnbr(n / 10);
+	write(1, &"0123456789"[n % 10], 1);
 }
 
-int	ft_atoi(const char *nptr)
+int	ft_atoi(const char *str)
 {
-	int			i;
+	int			res;
 	int			sign;
-	long int	old;
-	long int	num;
 
-	i = 0;
 	sign = 1;
-	num = 0;
-	while (nptr[i] == '\t' || nptr[i] == '\n' || nptr[i] == '\v' \
-					|| nptr[i] == '\f' || nptr[i] == '\r' || nptr[i] == ' ')
-		i++;
-	if (nptr[i] == '-')
+	res = 0;
+	while (*str >= 7 && *str <= 14)
+		str++;
+	if (*str == '-')
 		sign = -1;
-	if (nptr[i] == '-' || nptr[i] == '+')
-		i++;
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	if (*str == '-' || *str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
 	{
-		old = num;
-		num = num * 10 + (nptr[i++] - '0');
-		if ((old < 0 && num > 0) || (old > 0 && num < 0))
-			return ((sign == 1) * -1);
+		res = res * 10 + (*str - '0');
+		str++;
 	}
-	return (num * sign);
+	return (res * sign);
 }
 
 size_t	ft_strlen(const char *str)
