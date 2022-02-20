@@ -6,17 +6,16 @@
 /*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:39:50 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/02/20 01:34:19 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/02/20 02:57:59 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minitalk.h"
-#include <stdio.h>
-#include <time.h>
 
 static void	response(unsigned int *c_pid)
 {
-	kill(*c_pid, SIGUSR2);
+	if (kill(*c_pid, SIGUSR2) == -1)
+		ft_putstr("\nError : Kill() failed\n");
 	*c_pid = 0;
 }
 
@@ -61,5 +60,5 @@ int	main(void)
 	sigaction(SIGUSR2, &sa, 0);
 	while (1)
 		pause();
-	return (0);
+	return (EXIT_SUCCESS);
 }

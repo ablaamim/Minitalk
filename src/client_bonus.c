@@ -6,7 +6,7 @@
 /*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:39:34 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/02/20 00:51:01 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/02/20 03:00:26 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,26 @@ static void	count_byte(int sig, siginfo_t *siginfo, void *context)
 	}
 }
 
-static void	ft_zero(int pid)
+static void	ft_last_bit(int pid)
 {
 	int	i;
 
 	i = 8;
 	while (i--)
 	{
-		kill(pid, SIGUSR1);
+		if (kill(pid, SIGUSR1) == -1)
+			ft_putstr("\nError : Kill failed\n");
 		usleep(50);
 	}
 }
 
-static void	ft_check(void)
+static void	ft_error(void)
 {
 	ft_putstr("\nError : Invalid PID\n");
 	exit(EXIT_FAILURE);
 }
 
-static void	send2s(int pid, char *str)
+static void	ft_send_to_server(int pid, char *str)
 {
 	int		i;
 	char	c;
@@ -62,15 +63,15 @@ static void	send2s(int pid, char *str)
 			if (c >> i & 1)
 			{
 				if (kill(pid, SIGUSR2) == -1)
-					ft_check();
+					ft_error();
 			}
 			else
 				if (kill(pid, SIGUSR1) == -1)
-					ft_check();
+					ft_error();
 			usleep(200);
 		}
 	}
-	ft_zero(pid);
+	ft_last_bit(pid);
 }
 
 int	main(int argc, char **argv)
@@ -88,15 +89,12 @@ int	main(int argc, char **argv)
 	ft_putstr("Server received : ");
 	sa.sa_sigaction = count_byte;
 	sa.sa_flags = SA_SIGINFO;
-	sigaction(SIGUSR1, &sa, 0);
-	sigaction(SIGUSR2, &sa, 0);
-	send2s(ft_atoi(argv[1]), argv[2]);
+	if (sigaction(SIGUSR1, &sa, 0) == -1)
+		return (EXIT_FAILURE);
+	if (sigaction(SIGUSR2, &sa, 0))
+		return (EXIT_FAILURE);
+	ft_send_to_server(ft_atoi(argv[1]), argv[2]);
 	while (1)
 		pause();
-	clock_t t;
-	t = clock();
-	t = clock() - t;
-	double time_taken = ((double)t)/CLOCKS_PER_SEC;
-	printf("fun() took %f seconds to execute \n", time_taken);
 	return (EXIT_SUCCESS);
 }
