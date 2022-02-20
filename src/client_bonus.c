@@ -6,11 +6,13 @@
 /*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:39:34 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/02/20 00:02:24 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/02/20 00:51:01 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minitalk.h"
+#include <time.h>
+#include <stdio.h>
 
 static void	count_byte(int sig, siginfo_t *siginfo, void *context)
 {
@@ -24,7 +26,7 @@ static void	count_byte(int sig, siginfo_t *siginfo, void *context)
 	{
 		ft_putnbr(count);
 		ft_putstr(" byte\n");
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -42,8 +44,8 @@ static void	ft_zero(int pid)
 
 static void	ft_check(void)
 {
-	ft_putstr("\nCheck pid!\n");
-	exit(0);
+	ft_putstr("\nError : Invalid PID\n");
+	exit(EXIT_FAILURE);
 }
 
 static void	send2s(int pid, char *str)
@@ -77,10 +79,10 @@ int	main(int argc, char **argv)
 
 	if (argc != 3 || !ft_strlen(argv[2]))
 	{
-		ft_putstr("Arguments : ./client [pid] [string]\n");
-		exit(0);
+		ft_putstr("Arguments to run : ./client [pid] [string]\n");
+		exit(EXIT_FAILURE);
 	}
-	ft_putstr("Client sent    : ");
+	ft_putstr("Client sent     : ");
 	ft_putnbr(ft_strlen(argv[2]));
 	ft_putstr(" byte\n");
 	ft_putstr("Server received : ");
@@ -91,5 +93,10 @@ int	main(int argc, char **argv)
 	send2s(ft_atoi(argv[1]), argv[2]);
 	while (1)
 		pause();
-	return (0);
+	clock_t t;
+	t = clock();
+	t = clock() - t;
+	double time_taken = ((double)t)/CLOCKS_PER_SEC;
+	printf("fun() took %f seconds to execute \n", time_taken);
+	return (EXIT_SUCCESS);
 }

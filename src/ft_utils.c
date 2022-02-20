@@ -6,7 +6,7 @@
 /*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:39:23 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/02/19 22:19:00 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/02/20 00:20:04 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_atoi(const char *str)
 		str++;
 	while (*str >= '0' && *str <= '9')
 	{
-		res = res * 10 + (*str - '0');
+		res = res * 10 + (*str - 48);
 		str++;
 	}
 	return (res * sign);

@@ -6,11 +6,13 @@
 /*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:39:50 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/02/19 22:19:42 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/02/20 01:34:19 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minitalk.h"
+#include <stdio.h>
+#include <time.h>
 
 static void	response(unsigned int *c_pid)
 {
@@ -45,7 +47,7 @@ int	main(void)
 {
 	struct sigaction	sa;
 
-	ft_putstr("*Bonus part*\n");
+	ft_putstr("Bonus part\n");
 	ft_putstr("Server is running !\n");
 	ft_putstr(" PID : ");
 	ft_putnbr(getpid());
