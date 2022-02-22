@@ -6,7 +6,7 @@
 /*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:39:50 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/02/20 02:57:59 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/02/20 03:25:51 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,10 @@ int	main(void)
 	sigemptyset(&sa.sa_mask);
 	sigaddset(&sa.sa_mask, SIGUSR1);
 	sigaddset(&sa.sa_mask, SIGUSR2);
-	sigaction(SIGUSR1, &sa, 0);
-	sigaction(SIGUSR2, &sa, 0);
+	if (sigaction(SIGUSR1, &sa, 0) == -1)
+		ft_putstr("\nError : Kill has failed\n");
+	if (sigaction(SIGUSR2, &sa, 0) == -1)
+		ft_putstr("\nError : Kill has failed\n");
 	while (1)
 		pause();
 	return (EXIT_SUCCESS);

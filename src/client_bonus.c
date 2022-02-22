@@ -6,7 +6,7 @@
 /*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:39:34 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/02/20 03:00:26 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/02/22 20:48:18 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	ft_last_bit(int pid)
 	{
 		if (kill(pid, SIGUSR1) == -1)
 			ft_putstr("\nError : Kill failed\n");
-		usleep(50);
+		usleep(5);
 	}
 }
 
@@ -68,7 +68,7 @@ static void	ft_send_to_server(int pid, char *str)
 			else
 				if (kill(pid, SIGUSR1) == -1)
 					ft_error();
-			usleep(200);
+			usleep(20);
 		}
 	}
 	ft_last_bit(pid);
@@ -80,7 +80,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 3 || !ft_strlen(argv[2]))
 	{
-		ft_putstr("Arguments to run : ./client [pid] [string]\n");
+		ft_putstr("Arguments to run the program: ./client [pid] [string]\n");
 		exit(EXIT_FAILURE);
 	}
 	ft_putstr("Client sent     : ");
@@ -91,7 +91,7 @@ int	main(int argc, char **argv)
 	sa.sa_flags = SA_SIGINFO;
 	if (sigaction(SIGUSR1, &sa, 0) == -1)
 		return (EXIT_FAILURE);
-	if (sigaction(SIGUSR2, &sa, 0))
+	if (sigaction(SIGUSR2, &sa, 0) == -1)
 		return (EXIT_FAILURE);
 	ft_send_to_server(ft_atoi(argv[1]), argv[2]);
 	while (1)

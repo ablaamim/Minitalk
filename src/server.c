@@ -6,7 +6,7 @@
 /*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:38:45 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/02/20 02:29:51 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/02/20 03:22:09 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ int	main(void)
 	ft_putstr("\n");
 	sa.sa_sigaction = handler_s;
 	sa.sa_flags = SA_SIGINFO;
-	sigaction(SIGUSR1, &sa, 0);
-	sigaction(SIGUSR2, &sa, 0);
+	if (sigaction(SIGUSR1, &sa, 0) == -1)
+		return (EXIT_FAILURE);
+	if (sigaction(SIGUSR2, &sa, 0) == -1)
+		return (EXIT_FAILURE);
 	while (1)
 		pause();
 	return (EXIT_SUCCESS);
