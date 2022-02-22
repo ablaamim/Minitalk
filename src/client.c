@@ -6,7 +6,7 @@
 /*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:38:58 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/02/22 21:21:45 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/02/22 21:41:23 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	ft_last_bit(int pid)
 	i = 8;
 	while (i--)
 	{
-		if(kill(pid, SIGUSR2) == -1)
+		if (kill(pid, SIGUSR2) == -1)
 			ft_putstr("\nError : Kill failed\n");
 		usleep(5);
 	}
