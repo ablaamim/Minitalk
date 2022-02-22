@@ -6,7 +6,7 @@
 /*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:39:34 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/02/22 20:48:18 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/02/22 21:15:19 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ static void	ft_send_to_server(int pid, char *str)
 	}
 	ft_last_bit(pid);
 }
-
 int	main(int argc, char **argv)
 {
 	struct sigaction	sa;

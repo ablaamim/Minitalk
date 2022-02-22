@@ -6,7 +6,7 @@
 /*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:38:58 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/02/22 20:41:57 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/02/22 21:21:45 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_infos(int sig, siginfo_t *siginfo, void *context)
 	(void)context;
 	if (sig == SIGUSR2)
 		return ;
-	ft_putstr("sent\n");
+	ft_putstr("Sent successfuly!\n");
 	exit(EXIT_FAILURE);
 }
 
@@ -29,8 +29,9 @@ static void	ft_last_bit(int pid)
 	i = 8;
 	while (i--)
 	{
-		kill(pid, SIGUSR2);
-		usleep(50);
+		if(kill(pid, SIGUSR2) == -1)
+			ft_putstr("\nError : Kill failed\n");
+		usleep(5);
 	}
 }
 
@@ -59,7 +60,7 @@ static void	send_to_server(int pid, char *str)
 			else
 				if (kill(pid, SIGUSR2) == -1)
 					ft_error();
-			usleep(200);
+			usleep(20);
 		}
 	}
 	ft_last_bit(pid);

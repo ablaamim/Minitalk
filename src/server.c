@@ -6,7 +6,7 @@
 /*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:38:45 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/02/20 03:22:09 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/02/22 21:18:10 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	main(void)
 {
 	struct sigaction	sa;
 
-	ft_putstr("Mandatory part\n");
-	ft_putstr("Server is running\n");
+	ft_putstr("Mandatory part!\n");
+	ft_putstr("Server is actually running\n");
 	ft_putstr("PID : ");
 	ft_putnbr(getpid());
 	ft_putstr("\n");
