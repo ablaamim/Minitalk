@@ -6,7 +6,7 @@
 /*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:38:45 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/02/22 21:18:10 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/02/23 11:04:07 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static void	response(unsigned int *c_pid)
 	*c_pid = 0;
 }
 
-static void	handler_s(int sig, siginfo_t *siginfo, void *context)
+static void	handler_s(int sig, siginfo_t *siginfo, void *optional)
 {
 	static unsigned char	c = 0;
 	static int				i = 0;
 	static unsigned int		c_pid = 0;
 
-	(void)context;
+	(void)optional;
 	if (!c_pid)
 		c_pid = siginfo->si_pid;
 	c |= (sig == SIGUSR1);

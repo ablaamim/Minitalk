@@ -6,7 +6,7 @@
 /*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:38:58 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/02/22 21:55:33 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/02/23 11:16:01 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,10 @@ int	main(int argc, char **argv)
 	}
 	sa.sa_sigaction = ft_infos;
 	sa.sa_flags = SA_SIGINFO;
-	sigaction(SIGUSR1, &sa, 0);
-	sigaction(SIGUSR2, &sa, 0);
+	if (sigaction(SIGUSR1, &sa, 0) == -1)
+		exit(EXIT_FAILURE);
+	if (sigaction(SIGUSR2, &sa, 0) == -1)
+		exit(EXIT_FAILURE);
 	send_to_server(ft_atoi(argv[1]), argv[2]);
 	while (1)
 		pause();
