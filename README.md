@@ -2,7 +2,12 @@
 
 The purpose of this project is to code a small data exchange program using UNIX signals. <br><br>
 
+---
+
 ## Mandatory Part <br>
+
+---
+
 • You must create a communication program in the form of a client and server. <br> 
 • The server must be launched first, and after being launched it must display its PID. <br>
 • The client will take as parameters: <br>
@@ -16,27 +21,43 @@ The purpose of this project is to code a small data exchange program using UNIX 
 • Your server should be able to receive strings from several clients in a row, without needing to be restarted. <br>
 • You can only use the two signals SIGUSR1 and SIGUSR2. <br><br>
 
+---
+
 ## Bonus
+
+---
 
 • The server confirms every signal received by sending a signal to the client. <br>
 • Support Unicode characters! <br><br>
 
 ## Badge
 
+---
+
 <img src="minitalk.png"><br>
 
+---
+
 ## Skills
+
+---
 
 - Rigor
 - Unix<br>
 
+---
+
 ## My grade
+
+---
 
 <img src="score_minitalk.png"><br>
 
-<details>
+---
 
 ### What is a signal?
+
+---
 
 >A signal is a notification to a **process** that an event has occurred. Signals are sometimes described as software interrupts.
 >
@@ -45,6 +66,8 @@ The purpose of this project is to code a small data exchange program using UNIX 
 >Each signal is defined as a unique (small) integer, starting sequentially from 1. These integers are defined in <signal.h> with symbolic names of the form SIGxxxx. Since the actual numbers used for each signal vary across implementations, it is these symbolic names that are always used in programs. 
 >
 >A signal is said to be _generated_ by some event. Once generated, a signal is later _delivered_ to a process, which then takes some action in response to the signal. Between the time it is generated and the time it is delivered, a signal is said to be _pending_.
+
+</details>
 
 ### What is a process?
 
@@ -55,7 +78,11 @@ The purpose of this project is to code a small data exchange program using UNIX 
 >From the kernel’s point of view, a process consists of user-space memory containing program code and variables used by that code, and a range of kernel data structures that maintain information about the state of the process. The information recorded in the kernel data structures includes various identifier numbers
 (IDs) associated with the process, virtual memory tables, the table of open file descriptors, information relating to signal delivery and handling, process resource usages and limits, the current working directory, and a host of other information.
 
+---
+
 ### What is a program?
+
+---
 
 >A program is a file containing a range of information that describes how to construct a process at run time. One program may be used to construct many processes, or, put conversely, many processes may be running the same program.
 	
